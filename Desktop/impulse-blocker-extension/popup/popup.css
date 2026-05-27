@@ -1,4 +1,4 @@
-/* ── Reset ─────────────────────────────────────────────────────────────────── */
+/* ── Reset ── */
 *,
 *::before,
 *::after {
@@ -7,70 +7,63 @@
     padding: 0;
 }
 
-/* ── Base ──────────────────────────────────────────────────────────────────── */
+/* ── Base ── */
 body {
-    width: 380px;
-    min-height: 500px;
-    background: #0d0d0f;
-    color: #f9fafb;
-    font-family:
-        "Instrument Sans",
-        -apple-system,
-        BlinkMacSystemFont,
-        sans-serif;
-    /* Subtle brand glow behind everything */
-    background-image: radial-gradient(
-        ellipse 240px 180px at 100% 0%,
-        rgba(239, 68, 68, 0.07) 0%,
-        transparent 100%
-    );
+    width: 360px;
+    min-height: 520px;
+    background: #111114;
+    color: #f2f2f2;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 13px;
+    line-height: 1.4;
 }
 
-/* ── Header ────────────────────────────────────────────────────────────────── */
+/* ── Header ── */
 .header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 18px 20px 16px;
+    padding: 14px 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .header-brand {
     display: flex;
     align-items: center;
-    gap: 11px;
+    gap: 10px;
 }
 
 .logo {
-    width: 38px;
-    height: 38px;
-    border-radius: 11px;
-    background: linear-gradient(145deg, #ef4444 0%, #b91c1c 100%);
-    box-shadow: 0 4px 14px rgba(239, 68, 68, 0.35);
+    width: 34px;
+    height: 34px;
+    border-radius: 9px;
+    background: #ef4444;
     display: grid;
     place-items: center;
-    font-size: 19px;
+    font-size: 17px;
     flex-shrink: 0;
 }
 
 .header-title {
     font-size: 14px;
     font-weight: 700;
+    color: #f2f2f2;
     letter-spacing: -0.2px;
-    color: #f9fafb;
 }
 
 .header-sub {
     font-size: 11px;
-    color: rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.35);
     margin-top: 1px;
 }
 
-/* ── Toggle ────────────────────────────────────────────────────────────────── */
+/* ── Toggle ── */
 .toggle {
     position: relative;
-    width: 44px;
-    height: 24px;
+    width: 40px;
+    height: 22px;
     cursor: pointer;
+    flex-shrink: 0;
 }
 .toggle input {
     opacity: 0;
@@ -82,161 +75,110 @@ body {
 .toggle-track {
     position: absolute;
     inset: 0;
-    background: rgba(255, 255, 255, 0.09);
-    border: 1px solid rgba(255, 255, 255, 0.07);
+    background: rgba(255, 255, 255, 0.1);
     border-radius: 100px;
-    transition:
-        background 0.25s,
-        border-color 0.25s;
+    transition: background 0.2s;
 }
-
 .toggle-track::after {
     content: "";
     position: absolute;
     width: 16px;
     height: 16px;
+    top: 3px;
     left: 3px;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.5);
     border-radius: 50%;
     transition:
-        transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
-        background 0.25s;
+        transform 0.2s,
+        background 0.2s;
 }
-
 .toggle input:checked + .toggle-track {
-    background: #16a34a;
-    border-color: #16a34a;
+    background: #22c55e;
 }
 .toggle input:checked + .toggle-track::after {
-    transform: translateY(-50%) translateX(20px);
+    transform: translateX(18px);
     background: #fff;
 }
 
-/* ── Tabs ──────────────────────────────────────────────────────────────────── */
-.tabs-track {
+/* ── Tabs ── */
+.tabs {
     display: flex;
-    gap: 2px;
-    margin: 0 16px 16px;
-    padding: 3px;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    border-radius: 12px;
+    padding: 10px 16px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .tab {
     flex: 1;
-    padding: 8px 4px;
+    padding: 8px 0;
     border: none;
     background: none;
-    border-radius: 9px;
     font-family: inherit;
     font-size: 12px;
     font-weight: 600;
-    color: rgba(255, 255, 255, 0.35);
+    color: rgba(255, 255, 255, 0.3);
     cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
     transition:
-        background 0.2s,
-        color 0.2s,
-        box-shadow 0.2s;
+        color 0.15s,
+        border-color 0.15s;
 }
-
 .tab:hover {
     color: rgba(255, 255, 255, 0.6);
 }
-
 .tab.active {
-    background: #1c1c20;
-    color: #f9fafb;
-    box-shadow:
-        0 1px 4px rgba(0, 0, 0, 0.5),
-        inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    color: #f2f2f2;
+    border-bottom-color: #ef4444;
 }
 
-/* ── Panels ────────────────────────────────────────────────────────────────── */
+/* ── Panels ── */
 .panel {
     display: none;
-    padding: 0 16px 20px;
+    padding: 16px;
 }
 .panel.active {
     display: block;
-    animation: panelIn 0.18s ease-out both;
 }
 
-@keyframes panelIn {
-    from {
-        opacity: 0;
-        transform: translateY(5px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* ── Budget card ───────────────────────────────────────────────────────────── */
+/* ── Budget card ── */
 .budget-card {
-    background: #141416;
-    border: 1px solid rgba(255, 255, 255, 0.07);
-    border-radius: 18px;
-    padding: 18px 20px 16px;
+    background: #18181b;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 16px;
     margin-bottom: 12px;
-    position: relative;
-    overflow: hidden;
 }
 
-/* Thin top-edge accent line */
-.budget-card::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 20px;
-    right: 20px;
-    height: 1px;
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(239, 68, 68, 0.45),
-        transparent
-    );
-}
-
-.budget-card-top {
+.budget-card-header {
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    margin-bottom: 10px;
+    align-items: center;
+    margin-bottom: 8px;
 }
 
-.budget-card-label {
-    font-size: 10px;
+.budget-label {
+    font-size: 11px;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 1.4px;
-    color: rgba(255, 255, 255, 0.3);
+    letter-spacing: 0.8px;
+    color: rgba(255, 255, 255, 0.35);
 }
 
 .budget-pct {
-    font-family: "JetBrains Mono", monospace;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 700;
-    padding: 3px 9px;
+    padding: 2px 8px;
     border-radius: 100px;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.07);
     color: rgba(255, 255, 255, 0.5);
-    transition:
-        background 0.3s,
-        color 0.3s;
 }
-
 .budget-pct.safe {
-    background: rgba(16, 185, 129, 0.12);
-    color: #34d399;
+    background: rgba(34, 197, 94, 0.12);
+    color: #4ade80;
 }
 .budget-pct.warn {
-    background: rgba(245, 158, 11, 0.12);
-    color: #fbbf24;
+    background: rgba(234, 179, 8, 0.12);
+    color: #fde047;
 }
 .budget-pct.danger {
     background: rgba(239, 68, 68, 0.12);
@@ -246,49 +188,46 @@ body {
 .budget-amount {
     display: flex;
     align-items: baseline;
-    gap: 3px;
-    margin-bottom: 14px;
-}
-
-.budget-currency {
-    font-family: "JetBrains Mono", monospace;
-    font-size: 22px;
-    font-weight: 700;
-    color: rgba(255, 255, 255, 0.3);
-}
-
-#stat-spent {
-    font-family: "JetBrains Mono", monospace;
-    font-size: 40px;
-    font-weight: 700;
-    letter-spacing: -1px;
-    color: #f9fafb;
-    line-height: 1;
-}
-
-/* Budget progress bar */
-.budget-bar-track {
-    height: 6px;
-    background: rgba(255, 255, 255, 0.06);
-    border-radius: 100px;
-    overflow: hidden;
+    gap: 2px;
     margin-bottom: 12px;
 }
 
-.budget-bar-fill {
-    height: 100%;
-    border-radius: 100px;
-    background: linear-gradient(90deg, #10b981, #34d399);
-    transition:
-        width 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-        background 0.4s;
+.budget-currency {
+    font-size: 18px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.25);
 }
 
-.budget-bar-fill.warn {
-    background: linear-gradient(90deg, #d97706, #fbbf24);
+#stat-spent {
+    font-size: 32px;
+    font-weight: 700;
+    color: #f2f2f2;
+    letter-spacing: -0.5px;
+    line-height: 1;
 }
-.budget-bar-fill.danger {
-    background: linear-gradient(90deg, #dc2626, #f87171);
+
+/* Progress bar */
+.bar-track {
+    height: 5px;
+    background: rgba(255, 255, 255, 0.07);
+    border-radius: 100px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.bar-fill {
+    height: 100%;
+    border-radius: 100px;
+    background: #22c55e;
+    transition:
+        width 0.7s ease,
+        background 0.3s;
+}
+.bar-fill.warn {
+    background: #eab308;
+}
+.bar-fill.danger {
+    background: #ef4444;
 }
 
 .budget-footer {
@@ -296,14 +235,13 @@ body {
     justify-content: space-between;
     font-size: 11px;
     color: rgba(255, 255, 255, 0.3);
-    font-family: "JetBrains Mono", monospace;
 }
 
 #stat-left {
     color: rgba(255, 255, 255, 0.5);
 }
 
-/* ── Stat row ──────────────────────────────────────────────────────────────── */
+/* ── Stat row ── */
 .stat-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -313,26 +251,21 @@ body {
 .stat-card {
     display: flex;
     align-items: center;
-    gap: 12px;
-    background: #141416;
-    border: 1px solid rgba(255, 255, 255, 0.07);
-    border-radius: 14px;
-    padding: 14px 16px;
-    transition: border-color 0.2s;
-}
-.stat-card:hover {
-    border-color: rgba(255, 255, 255, 0.12);
+    gap: 10px;
+    background: #18181b;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 12px 14px;
 }
 
 .stat-icon {
-    font-size: 22px;
-    flex-shrink: 0;
+    font-size: 20px;
     line-height: 1;
+    flex-shrink: 0;
 }
 
 .stat-val {
-    font-family: "JetBrains Mono", monospace;
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 700;
     line-height: 1;
     margin-bottom: 2px;
@@ -342,53 +275,46 @@ body {
     font-size: 10px;
     color: rgba(255, 255, 255, 0.3);
     font-weight: 500;
-    line-height: 1.3;
 }
 
-/* ── Color utilities ───────────────────────────────────────────────────────── */
+/* ── Colors ── */
 .val-green {
-    color: #34d399;
+    color: #4ade80;
 }
 .val-red {
     color: #f87171;
 }
 .val-amber {
-    color: #fbbf24;
+    color: #fde047;
 }
 .val-purple {
-    color: #a78bfa;
+    color: #c084fc;
 }
 
-/* ── History ───────────────────────────────────────────────────────────────── */
+/* ── History ── */
 .history-item {
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 13px 14px;
-    border-radius: 12px;
-    margin-bottom: 4px;
-    border: 1px solid transparent;
-    transition:
-        background 0.15s,
-        border-color 0.15s;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    margin-bottom: 2px;
 }
 .history-item:hover {
-    background: rgba(255, 255, 255, 0.03);
-    border-color: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.04);
 }
 
 .history-icon {
-    width: 36px;
-    height: 36px;
-    border-radius: 10px;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
     display: grid;
     place-items: center;
-    font-size: 16px;
+    font-size: 15px;
     flex-shrink: 0;
 }
-
 .history-item.is-blocked .history-icon {
-    background: rgba(52, 211, 153, 0.1);
+    background: rgba(74, 222, 128, 0.1);
 }
 .history-item.is-purchased .history-icon {
     background: rgba(248, 113, 113, 0.1);
@@ -408,18 +334,17 @@ body {
 .history-date {
     font-size: 11px;
     color: rgba(255, 255, 255, 0.25);
-    margin-top: 2px;
+    margin-top: 1px;
 }
 
 .history-amount {
-    font-family: "JetBrains Mono", monospace;
     font-size: 13px;
     font-weight: 600;
     flex-shrink: 0;
     text-align: right;
 }
 .history-amount.is-blocked {
-    color: #34d399;
+    color: #4ade80;
 }
 .history-amount.is-purchased {
     color: #f87171;
@@ -427,93 +352,82 @@ body {
 
 .history-badge {
     font-size: 9px;
-    font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.8px;
-    margin-top: 3px;
-    opacity: 0.5;
+    letter-spacing: 0.5px;
+    opacity: 0.4;
+    margin-top: 2px;
 }
 
 .empty {
     text-align: center;
-    padding: 44px 0;
-    color: rgba(255, 255, 255, 0.12);
+    padding: 48px 0;
+    color: rgba(255, 255, 255, 0.2);
 }
 .empty-icon {
-    font-size: 40px;
+    font-size: 36px;
     display: block;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
 }
 .empty p {
-    font-size: 13px;
-    line-height: 1.5;
+    font-size: 12px;
+    line-height: 1.6;
 }
 
-/* ── Settings ──────────────────────────────────────────────────────────────── */
+/* ── Settings ── */
 .field {
-    margin-bottom: 16px;
+    margin-bottom: 14px;
 }
 
 .field-label {
-    display: flex;
-    align-items: center;
-    gap: 6px;
+    display: block;
     font-size: 11px;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 1.2px;
+    letter-spacing: 0.8px;
     color: rgba(255, 255, 255, 0.35);
-    margin-bottom: 8px;
+    margin-bottom: 6px;
 }
 
-.field-icon {
-    font-size: 13px;
-}
-
-.field-input-wrap {
+.field-row {
     display: flex;
-    align-items: center;
-    background: #141416;
+    align-items: stretch;
+    background: #18181b;
     border: 1px solid rgba(255, 255, 255, 0.09);
-    border-radius: 12px;
+    border-radius: 8px;
     overflow: hidden;
-    transition: border-color 0.2s;
+    transition: border-color 0.15s;
 }
-.field-input-wrap:focus-within {
-    border-color: rgba(255, 255, 255, 0.22);
+.field-row:focus-within {
+    border-color: rgba(255, 255, 255, 0.2);
 }
 
-.field-prefix,
-.field-suffix {
-    padding: 0 14px;
-    font-family: "JetBrains Mono", monospace;
-    font-size: 14px;
-    font-weight: 600;
-    color: rgba(255, 255, 255, 0.25);
-    background: rgba(255, 255, 255, 0.03);
-    align-self: stretch;
+.field-unit {
+    padding: 0 12px;
     display: grid;
     place-items: center;
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.03);
     border-right: 1px solid rgba(255, 255, 255, 0.06);
     flex-shrink: 0;
 }
-.field-suffix {
+.field-unit-right {
     border-right: none;
     border-left: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .field-input {
     flex: 1;
-    padding: 13px 14px;
+    padding: 11px 12px;
     background: none;
     border: none;
     outline: none;
-    color: #f9fafb;
-    font-family: "JetBrains Mono", monospace;
-    font-size: 15px;
+    color: #f2f2f2;
+    font-family: inherit;
+    font-size: 14px;
     font-weight: 500;
 }
-
 .field-input::placeholder {
     color: rgba(255, 255, 255, 0.15);
 }
@@ -521,44 +435,42 @@ body {
 .field-hint {
     font-size: 11px;
     color: rgba(255, 255, 255, 0.2);
-    margin-top: 6px;
-    line-height: 1.5;
+    margin-top: 5px;
 }
 
-.btn-save {
+.btn-primary {
+    display: block;
     width: 100%;
-    padding: 13px;
-    margin-top: 4px;
-    background: linear-gradient(135deg, #f9fafb 0%, #e5e7eb 100%);
+    padding: 12px;
+    margin-top: 6px;
+    background: #f2f2f2;
     border: none;
-    border-radius: 12px;
-    color: #111113;
+    border-radius: 8px;
+    color: #111114;
     font-family: inherit;
     font-size: 13px;
     font-weight: 700;
     cursor: pointer;
     transition:
-        opacity 0.15s,
-        transform 0.15s,
-        box-shadow 0.15s;
+        background 0.15s,
+        transform 0.1s;
 }
-.btn-save:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 6px 20px rgba(249, 250, 251, 0.12);
+.btn-primary:hover {
+    background: #fff;
 }
-.btn-save:active {
-    transform: translateY(0);
-    opacity: 0.9;
+.btn-primary:active {
+    transform: scale(0.99);
 }
 
-.btn-reset {
+.btn-danger {
+    display: block;
     width: 100%;
-    padding: 12px;
+    padding: 11px;
     margin-top: 8px;
     background: none;
-    border: 1px solid rgba(239, 68, 68, 0.18);
-    border-radius: 12px;
-    color: rgba(248, 113, 113, 0.7);
+    border: 1px solid rgba(239, 68, 68, 0.2);
+    border-radius: 8px;
+    color: rgba(248, 113, 113, 0.6);
     font-family: inherit;
     font-size: 12px;
     font-weight: 600;
@@ -568,29 +480,29 @@ body {
         border-color 0.15s,
         color 0.15s;
 }
-.btn-reset:hover {
-    background: rgba(239, 68, 68, 0.06);
-    border-color: rgba(239, 68, 68, 0.3);
+.btn-danger:hover {
+    background: rgba(239, 68, 68, 0.07);
+    border-color: rgba(239, 68, 68, 0.35);
     color: #f87171;
 }
 
-/* ── Toast ─────────────────────────────────────────────────────────────────── */
+/* ── Toast ── */
 .toast {
     position: fixed;
-    bottom: 16px;
+    bottom: 14px;
     left: 50%;
-    transform: translateX(-50%) translateY(60px);
-    background: #f9fafb;
-    color: #111113;
-    padding: 9px 18px;
+    transform: translateX(-50%) translateY(50px);
+    background: #f2f2f2;
+    color: #111114;
+    padding: 8px 16px;
     border-radius: 100px;
     font-size: 12px;
     font-weight: 700;
     opacity: 0;
     pointer-events: none;
     transition:
-        transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-        opacity 0.3s;
+        transform 0.25s ease,
+        opacity 0.25s ease;
     white-space: nowrap;
     z-index: 99;
 }

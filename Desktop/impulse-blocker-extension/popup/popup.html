@@ -2,99 +2,93 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <meta name="viewport" content="width=400" />
         <title>Worth It?</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap"
-        />
         <link rel="stylesheet" href="popup.css" />
     </head>
     <body>
-        <!-- ── Header ── -->
+        <!-- Header -->
         <header class="header">
             <div class="header-brand">
                 <div class="logo">✋</div>
-                <div>
+                <div class="header-text">
                     <div class="header-title">Worth It?</div>
                     <div class="header-sub">Think before you spend</div>
                 </div>
             </div>
-            <label class="toggle" title="Enable / disable protection">
+            <label class="toggle">
                 <input type="checkbox" id="toggle-enabled" checked />
                 <span class="toggle-track"></span>
             </label>
         </header>
 
-        <!-- ── Tabs ── -->
-        <nav class="tabs-track">
+        <!-- Tab nav -->
+        <nav class="tabs">
             <button class="tab active" data-tab="dashboard">Overview</button>
             <button class="tab" data-tab="history">History</button>
             <button class="tab" data-tab="settings">Settings</button>
         </nav>
 
-        <!-- ── Overview ── -->
+        <!-- Overview -->
         <div class="panel active" id="panel-dashboard">
             <div class="budget-card">
-                <div class="budget-card-top">
-                    <span class="budget-card-label">This month</span>
+                <div class="budget-card-header">
+                    <span class="budget-label">This month</span>
                     <span class="budget-pct" id="budget-pct">0%</span>
                 </div>
                 <div class="budget-amount">
                     <span class="budget-currency">$</span
                     ><span id="stat-spent">0</span>
                 </div>
-                <div class="budget-bar-track">
+                <div class="bar-track">
                     <div
-                        class="budget-bar-fill"
+                        class="bar-fill"
                         id="budget-bar-fill"
                         style="width: 0%"
                     ></div>
                 </div>
                 <div class="budget-footer">
                     <span id="budget-spent-label">$0 spent</span>
-                    <span id="stat-left">$0 left</span>
+                    <span id="stat-left">$0 remaining</span>
                 </div>
             </div>
 
             <div class="stat-row">
                 <div class="stat-card">
-                    <span class="stat-icon">🛡️</span>
-                    <div class="stat-body">
+                    <div class="stat-icon">🛡️</div>
+                    <div>
                         <div class="stat-val val-purple" id="stat-blocked">
                             0
                         </div>
-                        <div class="stat-label">Purchases blocked</div>
+                        <div class="stat-label">Blocked</div>
                     </div>
                 </div>
                 <div class="stat-card">
-                    <span class="stat-icon">🧋</span>
-                    <div class="stat-body">
+                    <div class="stat-icon">🧋</div>
+                    <div>
                         <div class="stat-val val-amber" id="stat-bobas">0</div>
-                        <div class="stat-label">Bobas worth saved</div>
+                        <div class="stat-label">Bobas saved</div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- ── History ── -->
+        <!-- History -->
         <div class="panel" id="panel-history">
             <div id="history-list"></div>
         </div>
 
-        <!-- ── Settings ── -->
+        <!-- Settings -->
         <div class="panel" id="panel-settings">
             <div class="field">
-                <label class="field-label" for="set-budget">
-                    <span class="field-icon">💰</span> Monthly budget
-                </label>
-                <div class="field-input-wrap">
-                    <span class="field-prefix">$</span>
+                <label class="field-label" for="set-budget"
+                    >Monthly budget</label
+                >
+                <div class="field-row">
+                    <span class="field-unit">$</span>
                     <input
                         type="number"
-                        class="field-input"
                         id="set-budget"
+                        class="field-input"
                         placeholder="2000"
                         min="0"
                         step="100"
@@ -103,28 +97,28 @@
             </div>
 
             <div class="field">
-                <label class="field-label" for="set-cooldown">
-                    <span class="field-icon">⏱️</span> Cooldown timer
-                </label>
-                <div class="field-input-wrap">
+                <label class="field-label" for="set-cooldown"
+                    >Cooldown timer</label
+                >
+                <div class="field-row">
                     <input
                         type="number"
-                        class="field-input"
                         id="set-cooldown"
+                        class="field-input"
                         placeholder="30"
                         min="5"
                         max="300"
                         step="5"
                     />
-                    <span class="field-suffix">sec</span>
+                    <span class="field-unit field-unit-right">sec</span>
                 </div>
-                <div class="field-hint">
-                    How long you must wait before "Buy anyway" unlocks
-                </div>
+                <p class="field-hint">Seconds before "Buy anyway" unlocks</p>
             </div>
 
-            <button class="btn-save" id="save-btn">Save changes</button>
-            <button class="btn-reset" id="reset-btn">Reset monthly data</button>
+            <button class="btn-primary" id="save-btn">Save changes</button>
+            <button class="btn-danger" id="reset-btn">
+                Reset monthly data
+            </button>
         </div>
 
         <div class="toast" id="toast"></div>
