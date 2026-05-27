@@ -42,18 +42,16 @@
     // Big number
     el.statSpent.textContent = spent.toFixed(0);
 
-    // Budget bar + pct badge
+    // Budget bar
     el.budgetBar.style.width = `${pct}%`;
-    el.budgetBar.className = `budget-bar-fill ${tier}`;
-    el.budgetPct.textContent = `${Math.round(pct)}%`;
-    el.budgetPct.className = `budget-pct ${tier}`;
-    el.budgetPct.style.color = color;
+    el.budgetBar.className = `bar-fill ${tier}`;
 
-    // Footer labels
+    // Bar metadata
     el.budgetSpentLabel.textContent = `$${spent.toFixed(0)} spent`;
-    el.statLeft.textContent = `$${remaining.toFixed(0)} left`;
+    el.budgetPct.textContent = `${Math.round(pct)}% of budget`;
 
-    // Mini stat cards
+    // Stats
+    el.statLeft.textContent = `$${remaining.toFixed(0)}`;
     el.statBlocked.textContent = blocked;
     el.statBobas.textContent = Math.floor(remaining / 7.5);
   }
@@ -68,11 +66,7 @@
       .reverse();
 
     if (!monthTx.length) {
-      container.innerHTML = `
-        <div class="empty">
-          <span class="empty-icon">✨</span>
-          <p>No purchases this month.<br>Keep it up!</p>
-        </div>`;
+      container.innerHTML = `<div class="empty">No purchases this month.<br>Keep it up!</div>`;
       return;
     }
 
@@ -89,14 +83,13 @@
         const amount = (t.amount || 0).toFixed(2);
         return `
         <div class="history-item ${cls}">
-          <div class="history-icon">${blocked ? "🛡️" : "🛒"}</div>
           <div class="history-info">
             <div class="history-site">${t.site || "Unknown"}</div>
             <div class="history-date">${date}</div>
           </div>
           <div class="history-amount ${cls}">
-            <div>${blocked ? "+$" : "-$"}${amount}</div>
-            <div class="history-badge">${blocked ? "blocked" : "purchased"}</div>
+            ${blocked ? "+$" : "-$"}${amount}
+            <span class="history-badge">${blocked ? "blocked" : "purchased"}</span>
           </div>
         </div>`;
       })
