@@ -9,8 +9,8 @@
 /* ── Shell ── */
 html,
 body {
-    width: 400px;
-    height: 580px;
+    width: 480px;
+    height: 680px;
     background: #08080a;
     overflow: hidden;
 }
@@ -18,7 +18,7 @@ body {
 body {
     display: grid;
     place-items: center;
-    padding: 6px;
+    padding: 10px;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     font-size: 13px;
     color: #e8e8ea;
@@ -30,7 +30,7 @@ body {
     height: 100%;
     background: #111114;
     border: 1px solid rgba(255, 255, 255, 0.09);
-    border-radius: 14px;
+    border-radius: 16px;
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -42,19 +42,19 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 20px 22px 18px;
+    padding: 28px 28px 24px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .header-title {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 700;
     color: #ffffff;
     letter-spacing: -0.3px;
 }
 
 .header-sub {
-    font-size: 11px;
+    font-size: 12px;
     color: rgba(255, 255, 255, 0.3);
     margin-top: 2px;
 }
@@ -106,16 +106,16 @@ body {
 .tabs {
     flex-shrink: 0;
     display: flex;
-    padding: 0 22px;
+    padding: 0 28px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .tab {
-    padding: 9px 14px;
+    padding: 13px 18px;
     border: none;
     background: none;
     font-family: inherit;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 500;
     color: rgba(255, 255, 255, 0.3);
     cursor: pointer;
@@ -155,7 +155,7 @@ body {
 /* ── Panels ── */
 .panel {
     display: none;
-    padding: 24px 22px;
+    padding: 32px 28px;
 }
 .panel.active {
     display: block;
@@ -163,45 +163,45 @@ body {
 
 /* ── Overview — budget section ── */
 .section {
-    margin-bottom: 24px;
+    margin-bottom: 36px;
 }
 
 .section-label {
-    font-size: 10px;
+    font-size: 11px;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
     color: rgba(255, 255, 255, 0.28);
-    margin-bottom: 10px;
+    margin-bottom: 14px;
 }
 
 .big-number {
     display: flex;
     align-items: baseline;
-    gap: 3px;
-    margin-bottom: 18px;
+    gap: 4px;
+    margin-bottom: 24px;
 }
 
 .currency {
-    font-size: 20px;
-    font-weight: 300;
-    color: rgba(255, 255, 255, 0.2);
+    font-size: 28px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.55);
 }
 
 #stat-spent {
-    font-size: 48px;
+    font-size: 52px;
     font-weight: 700;
     color: #ffffff;
-    letter-spacing: -2px;
+    letter-spacing: -1px;
     line-height: 1;
 }
 
 .bar-track {
-    height: 3px;
+    height: 4px;
     background: rgba(255, 255, 255, 0.07);
     border-radius: 100px;
     overflow: hidden;
-    margin-bottom: 8px;
+    margin-bottom: 12px;
 }
 
 .bar-fill {
@@ -222,43 +222,42 @@ body {
 .bar-meta {
     display: flex;
     justify-content: space-between;
-    font-size: 10px;
-    color: rgba(255, 255, 255, 0.22);
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.28);
 }
 
 /* ── Divider ── */
 .divider {
     height: 1px;
     background: rgba(255, 255, 255, 0.05);
-    margin-bottom: 24px;
+    margin-bottom: 36px;
 }
 
 /* ── Stats ── */
 .stats {
     display: flex;
-    gap: 0;
 }
 
 .stat {
     flex: 1;
 }
 .stat + .stat {
-    padding-left: 18px;
-    margin-left: 18px;
+    padding-left: 28px;
+    margin-left: 28px;
     border-left: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .stat-number {
-    font-size: 22px;
+    font-size: 28px;
     font-weight: 700;
-    letter-spacing: -0.4px;
+    letter-spacing: -0.5px;
     line-height: 1;
-    margin-bottom: 4px;
+    margin-bottom: 6px;
 }
 
 .stat-label {
-    font-size: 10px;
-    color: rgba(255, 255, 255, 0.28);
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.35);
 }
 
 /* ── Colour utilities ── */
@@ -280,7 +279,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 12px 0;
+    padding: 18px 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 .history-item:last-child {
@@ -293,25 +292,25 @@ body {
 }
 
 .history-site {
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 500;
     color: #e8e8ea;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    margin-bottom: 2px;
+    margin-bottom: 5px;
 }
 
 .history-date {
-    font-size: 10px;
-    color: rgba(255, 255, 255, 0.22);
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.28);
 }
 
 .history-amount {
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 600;
     flex-shrink: 0;
-    margin-left: 14px;
+    margin-left: 20px;
     text-align: right;
 }
 .history-amount.is-blocked {
@@ -323,40 +322,40 @@ body {
 
 .history-badge {
     display: block;
-    font-size: 10px;
-    color: rgba(255, 255, 255, 0.18);
-    margin-top: 2px;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.22);
+    margin-top: 4px;
     text-transform: capitalize;
 }
 
 .empty {
-    padding: 48px 0;
+    padding: 64px 0;
     text-align: center;
-    color: rgba(255, 255, 255, 0.18);
-    font-size: 13px;
-    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.22);
+    font-size: 14px;
+    line-height: 1.8;
 }
 
 /* ── Settings ── */
 .field {
-    margin-bottom: 18px;
+    margin-bottom: 28px;
 }
 
 .field-label {
     display: block;
-    font-size: 10px;
+    font-size: 11px;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
-    color: rgba(255, 255, 255, 0.28);
-    margin-bottom: 7px;
+    color: rgba(255, 255, 255, 0.35);
+    margin-bottom: 10px;
 }
 
 .field-row {
     display: flex;
     align-items: stretch;
     border: 1px solid rgba(255, 255, 255, 0.09);
-    border-radius: 9px;
+    border-radius: 10px;
     overflow: hidden;
     background: rgba(255, 255, 255, 0.03);
     transition: border-color 0.15s;
@@ -381,13 +380,13 @@ body {
 
 .field-input {
     flex: 1;
-    padding: 12px 13px;
+    padding: 15px 16px;
     background: none;
     border: none;
     outline: none;
     color: #e8e8ea;
     font-family: inherit;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 500;
 }
 .field-input::placeholder {
@@ -395,23 +394,23 @@ body {
 }
 
 .field-hint {
-    font-size: 10px;
-    color: rgba(255, 255, 255, 0.2);
-    margin-top: 6px;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.25);
+    margin-top: 9px;
     line-height: 1.6;
 }
 
 .btn-primary {
     display: block;
     width: 100%;
-    padding: 13px;
-    margin-top: 6px;
+    padding: 16px;
+    margin-top: 14px;
     background: #ffffff;
     border: none;
-    border-radius: 9px;
+    border-radius: 10px;
     color: #111114;
     font-family: inherit;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 600;
     cursor: pointer;
     transition: opacity 0.15s;
@@ -423,14 +422,14 @@ body {
 .btn-ghost {
     display: block;
     width: 100%;
-    padding: 12px;
-    margin-top: 8px;
+    padding: 15px;
+    margin-top: 12px;
     background: none;
     border: 1px solid rgba(255, 255, 255, 0.07);
-    border-radius: 9px;
-    color: rgba(255, 255, 255, 0.28);
+    border-radius: 10px;
+    color: rgba(255, 255, 255, 0.3);
     font-family: inherit;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 500;
     cursor: pointer;
     transition:

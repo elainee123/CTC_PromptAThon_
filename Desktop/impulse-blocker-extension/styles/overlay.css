@@ -1,10 +1,37 @@
 /* ─────────────────────────────────────────────────────────────────────────────
-   Worth It? — blocker overlay
-   Injected into every page. All selectors are prefixed with ibb- to avoid
-   collisions with site styles.
+    Worth It? — Vertically Centered Price Number Canvas
+    Injected into every page. Prefixed with ibb- to isolate encapsulation.
 ───────────────────────────────────────────────────────────────────────────── */
 
-/* ── Backdrop ── */
+/* ── Core Design Tokens ── */
+#impulse-blocker-overlay {
+    --ibb-bg-base: #050506;
+    --ibb-bg-card: #0c0c0e;
+    --ibb-border: rgba(255, 255, 255, 0.04);
+    --ibb-border-glow: rgba(255, 255, 255, 0.1);
+
+    /* Text Semantic Layers */
+    --ibb-text-primary: #f4f4f5;
+    --ibb-text-secondary: #a1a1aa;
+    --ibb-text-muted: #61616a;
+
+    /* High Visibility Display Accent */
+    --ibb-amount-accent: #ffffff;
+
+    /* Safe / Warn / Danger System */
+    --ibb-safe-bg: rgba(16, 185, 129, 0.08);
+    --ibb-safe-text: #34d399;
+    --ibb-warn-bg: rgba(245, 158, 11, 0.08);
+    --ibb-warn-text: #fbbf24;
+    --ibb-danger-bg: rgba(239, 68, 68, 0.08);
+    --ibb-danger-text: #f87171;
+
+    /* Interactive Spring System */
+    --ibb-spring: cubic-bezier(0.16, 1, 0.3, 1);
+    --ibb-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ── Backdrop Layer ── */
 #impulse-blocker-overlay {
     position: fixed;
     inset: 0;
@@ -12,19 +39,23 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: transparent;
+    background: rgba(0, 0, 0, 0);
     opacity: 0;
     pointer-events: none;
     transition:
-        opacity 0.35s ease,
-        background 0.35s ease;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        opacity 0.6s var(--ibb-ease-out),
+        background-color 0.6s var(--ibb-ease-out);
+    font-family:
+        -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto,
+        sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 #impulse-blocker-overlay.ibb-visible {
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    background-color: rgba(3, 3, 4, 0.88);
+    backdrop-filter: blur(32px);
+    -webkit-backdrop-filter: blur(32px);
     opacity: 1;
     pointer-events: all;
 }
@@ -36,156 +67,232 @@
     font-family: inherit;
 }
 
-/* ── Card ── */
+/* ── Large Outer Card Canvas ── */
 .ibb-card {
-    width: 460px;
-    max-width: 92vw;
-    max-height: 88vh;
-    overflow-y: auto;
-    overflow-x: hidden;
-    background: #111113;
-    border: 1px solid rgba(255, 255, 255, 0.09);
-    border-radius: 20px;
-    color: #f0f0f0;
-    transform: translateY(24px) scale(0.97);
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    box-shadow: 0 32px 80px rgba(0, 0, 0, 0.6);
-    scrollbar-width: none;
+    width: 1100px;
+    max-width: 94vw;
+    max-height: 96vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    background: var(--ibb-bg-card);
+    border: 1px solid var(--ibb-border);
+    border-radius: 40px;
+    color: var(--ibb-text-primary);
+
+    transform: translateY(40px) scale(0.97);
+    transition: transform 0.7s var(--ibb-spring);
+
+    box-shadow:
+        0 0 0 1px rgba(0, 0, 0, 0.7),
+        0 40px 80px -20px rgba(0, 0, 0, 0.9),
+        0 20px 40px -15px rgba(0, 0, 0, 0.6);
 }
-.ibb-card::-webkit-scrollbar {
+
+/* ── Main Body Wrapper ── */
+.ibb-card-body {
+    width: 100%;
+    overflow-y: auto;
+    scrollbar-width: none;
+    padding: 80px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 50px !important;
+}
+.ibb-card-body::-webkit-scrollbar {
     display: none;
 }
 
 .ibb-visible .ibb-card {
     transform: translateY(0) scale(1);
+    border-color: var(--ibb-border-glow);
 }
 
-/* ── Header ── */
+/* ── Borderless Layout Sections ── */
+.ibb-section {
+    width: 920px;
+    max-width: 92%;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 0 64px;
+    margin: 0 auto !important;
+    flex-shrink: 0 !important;
+
+    contain: content;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
+}
+
+/* ── Centered Header Segment ── */
 .ibb-header {
-    padding: 32px 32px 28px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    text-align: center;
+    margin: 0 auto !important;
+    width: 920px;
+    max-width: 92%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    contain: content;
+    flex-shrink: 0;
 }
 
 .ibb-heading {
     font-size: 32px;
-    font-weight: 700;
+    font-weight: 600;
     letter-spacing: -0.8px;
     color: #ffffff;
-    line-height: 1;
-    margin-bottom: 8px;
+    line-height: 1.3;
+    margin-bottom: 18px;
+    overflow-wrap: break-word;
 }
 
 .ibb-subheading {
     font-size: 15px;
-    color: rgba(255, 255, 255, 0.4);
-    font-weight: 400;
-    line-height: 1.4;
+    color: var(--ibb-text-secondary);
+    line-height: 1.75;
+    max-width: 640px;
+    overflow-wrap: break-word;
 }
 
-/* ── Generic section ── */
-.ibb-section {
-    padding: 24px 32px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-}
-
+/* ── Micro Labels ── */
 .ibb-label {
     font-size: 11px;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    color: rgba(255, 255, 255, 0.3);
-    margin-bottom: 14px;
+    letter-spacing: 0.12em;
+    color: var(--ibb-text-muted);
+    margin-bottom: 24px;
+    display: block;
 }
 
-/* ── Price input ── */
+/* ── FIXED: Perfectly Centered Price Row ── */
 .ibb-price-row {
     display: flex;
-    align-items: baseline;
-    gap: 4px;
+
+    /* FIX: Changed baseline mapping to center mapping for crisp vertical balance */
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+
+    padding: 20px 0 !important;
+    height: 120px !important;
+    min-height: 120px !important;
+    overflow: visible !important;
+
+    min-width: 450px;
+    width: auto;
+    max-width: 100%;
+    margin: 0 auto !important;
+    white-space: nowrap !important;
+}
+
+/* Hard Nuclear Styling Override on residual legacy extension input markings */
+.ibb-price-row input,
+.ibb-price-input {
+    position: relative;
+    top: -4px; /* FIX: Subtle upward shift to combat native font-descender drops */
+    background: transparent !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    color: var(--ibb-amount-accent) !important;
+    font-size: 76px !important;
+    font-weight: 700 !important;
+    width: 100% !important;
+    pointer-events: none !important;
+    line-height: 1 !important;
+    height: auto !important;
 }
 
 .ibb-currency {
-    font-size: 28px;
-    font-weight: 300;
-    color: rgba(255, 255, 255, 0.2);
+    position: relative;
+    top: -2px; /* Pulls the dollar sign up along with the numerical elements */
+    font-size: 62px;
+    font-weight: 500;
+    color: var(--ibb-amount-accent);
     line-height: 1;
+    user-select: none;
 }
 
-.ibb-price-input {
-    font-size: 52px;
+/* Premium large typography display */
+.ibb-price-display {
+    position: relative;
+    top: -4px; /* FIX: Perfect visual vertical nudge upward */
+    font-size: 76px;
     font-weight: 700;
-    letter-spacing: -2px;
-    color: #ffffff;
-    background: none;
-    border: none;
-    outline: none;
-    width: 100%;
-    line-height: 1;
-    -moz-appearance: textfield;
-}
-.ibb-price-input::-webkit-outer-spin-button,
-.ibb-price-input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-}
-.ibb-price-input::placeholder {
-    color: rgba(255, 255, 255, 0.1);
+    letter-spacing: -1px;
+    color: var(--ibb-amount-accent) !important;
+    line-height: 1 !important;
+    height: auto !important;
+    display: inline-block;
 }
 
-/* ── Budget bar ── */
+/* ── Budget Progress Module ── */
 .ibb-budget-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 12px;
+    margin-bottom: 28px;
 }
 
 .ibb-budget-pct {
     font-size: 12px;
-    font-weight: 600;
-    padding: 3px 10px;
-    border-radius: 100px;
-    background: rgba(255, 255, 255, 0.06);
-    color: rgba(255, 255, 255, 0.4);
+    font-weight: 500;
+    padding: 6px 14px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--ibb-text-secondary);
 }
 .ibb-budget-pct.ibb-safe {
-    background: rgba(52, 211, 153, 0.1);
-    color: #6ee7b7;
+    background: var(--ibb-safe-bg);
+    color: var(--ibb-safe-text);
 }
 .ibb-budget-pct.ibb-warn {
-    background: rgba(251, 191, 36, 0.1);
-    color: #fcd34d;
+    background: var(--ibb-warn-bg);
+    color: var(--ibb-warn-text);
 }
 .ibb-budget-pct.ibb-danger {
-    background: rgba(248, 113, 113, 0.1);
-    color: #fca5a5;
+    background: var(--ibb-danger-bg);
+    color: var(--ibb-danger-text);
 }
 
 .ibb-bar-track {
     position: relative;
     width: 100%;
-    height: 4px;
-    background: rgba(255, 255, 255, 0.07);
+    height: 10px;
+    background: rgba(0, 0, 0, 0.3);
     border-radius: 100px;
     overflow: hidden;
-    margin-bottom: 10px;
+    margin-bottom: 24px;
 }
 
 .ibb-bar-fill {
     height: 100%;
     border-radius: 100px;
-    background: rgba(255, 255, 255, 0.4);
+    background: var(--ibb-text-secondary);
     transition:
-        width 0.7s ease,
-        background 0.4s;
+        width 0.8s var(--ibb-ease-out),
+        background-color 0.3s;
 }
 .ibb-bar-fill.ibb-safe {
-    background: #6ee7b7;
+    background: var(--ibb-safe-text);
 }
 .ibb-bar-fill.ibb-warn {
-    background: #fcd34d;
+    background: var(--ibb-warn-text);
 }
 .ibb-bar-fill.ibb-danger {
-    background: #fca5a5;
+    background: var(--ibb-danger-text);
 }
 
 .ibb-bar-new {
@@ -193,151 +300,200 @@
     top: 0;
     height: 100%;
     border-radius: 100px;
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.2);
+    mix-blend-mode: overlay;
     transition:
-        left 0.7s ease,
-        width 0.7s ease;
+        left 0.8s var(--ibb-ease-out),
+        width 0.8s var(--ibb-ease-out);
 }
 
 .ibb-budget-detail {
     display: flex;
     justify-content: space-between;
-    font-size: 11px;
-    color: rgba(255, 255, 255, 0.22);
+    font-size: 14px;
+    color: var(--ibb-text-muted);
 }
 
-/* ── Comparisons ── */
+/* ── Comparison Blocks ── */
+.ibb-comp-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
 .ibb-comp-row {
     display: flex;
-    align-items: baseline;
-    gap: 12px;
-    padding: 9px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    align-items: center;
+    gap: 28px;
+    padding: 18px 24px;
+    border-radius: 14px;
+    transition: background-color 0.2s ease;
 }
-.ibb-comp-row:last-child {
-    border-bottom: none;
+.ibb-comp-row:hover {
+    background: rgba(255, 255, 255, 0.02);
 }
 
 .ibb-comp-count {
-    font-size: 20px;
-    font-weight: 700;
+    font-size: 17px;
+    font-weight: 600;
     color: #ffffff;
-    min-width: 36px;
+    min-width: 44px;
     text-align: right;
-    letter-spacing: -0.3px;
 }
 
 .ibb-comp-name {
-    font-size: 14px;
-    color: rgba(255, 255, 255, 0.5);
-    font-weight: 400;
+    font-size: 15px;
+    color: var(--ibb-text-secondary);
+    overflow-wrap: break-word;
+    max-width: calc(100% - 76px);
 }
 
-/* ── Investment rows ── */
+/* ── Investment Projections ── */
+.ibb-invest-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
 .ibb-invest-row {
     display: flex;
     align-items: center;
-    gap: 14px;
-    padding: 8px 0;
+    gap: 28px;
+    padding: 16px 24px;
+    border-radius: 14px;
+}
+.ibb-invest-row:hover {
+    background: rgba(255, 255, 255, 0.02);
 }
 
 .ibb-invest-yr {
-    font-size: 12px;
-    color: rgba(255, 255, 255, 0.3);
+    font-size: 14px;
+    color: var(--ibb-text-muted);
     font-weight: 500;
-    min-width: 48px;
+    min-width: 54px;
 }
 
 .ibb-invest-bar-wrap {
     flex: 1;
-    height: 3px;
-    background: rgba(255, 255, 255, 0.06);
+    height: 10px;
+    background: rgba(0, 0, 0, 0.3);
     border-radius: 100px;
-    overflow: hidden;
 }
 
 .ibb-invest-bar {
     height: 100%;
-    background: rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.15);
     border-radius: 100px;
-    transition: width 0.7s ease;
+    transition: width 0.8s var(--ibb-ease-out);
 }
 
 .ibb-invest-val {
-    font-size: 13px;
-    font-weight: 600;
-    color: rgba(255, 255, 255, 0.6);
-    min-width: 52px;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--ibb-text-secondary);
+    min-width: 80px;
     text-align: right;
 }
 
-/* ── Nudge ── */
+/* ── Contextual Nudge Banner ── */
 .ibb-nudge-section {
-    padding-top: 20px;
-    padding-bottom: 20px;
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin: 0 auto !important;
+    width: 920px;
+    max-width: 92%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    contain: content;
+    flex-shrink: 0;
 }
 
 .ibb-nudge {
-    font-size: 14px;
-    line-height: 1.65;
-    color: rgba(255, 255, 255, 0.35);
-    font-style: italic;
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--ibb-text-secondary);
+    text-align: center;
+    overflow-wrap: break-word;
 }
 
 .ibb-nudge strong {
-    color: rgba(255, 255, 255, 0.6);
-    font-style: normal;
-    font-weight: 600;
+    color: #ffffff;
+    font-weight: 500;
 }
 
-/* ── Actions ── */
+/* ── Bottom Deck Action System ── */
 .ibb-actions {
-    padding: 24px 32px 28px;
+    padding: 40px 0 64px 0;
+    background: linear-gradient(to top, var(--ibb-bg-card) 85%, transparent);
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    align-items: center;
+    gap: 16px;
+    margin-top: auto;
+    width: 100%;
+    flex-shrink: 0;
+}
+
+.ibb-btn-cancel,
+.ibb-btn-proceed,
+.ibb-cooldown {
+    width: 920px;
+    max-width: 92%;
+    overflow-wrap: break-word;
 }
 
 .ibb-btn-cancel,
 .ibb-btn-proceed {
-    width: 100%;
-    padding: 15px;
-    border-radius: 12px;
-    font-size: 14px;
-    font-weight: 600;
+    padding: 22px;
+    border-radius: 18px;
+    font-size: 16px;
+    font-weight: 500;
     cursor: pointer;
     border: none;
-    transition:
-        opacity 0.15s,
-        background 0.15s;
-    letter-spacing: 0.1px;
+    white-space: normal;
+    transition: all 0.25s var(--ibb-ease-out);
 }
 
 .ibb-btn-cancel {
     background: #ffffff;
-    color: #111113;
+    color: var(--ibb-bg-base);
+    box-shadow: 0 4px 24px rgba(255, 255, 255, 0.08);
 }
 .ibb-btn-cancel:hover {
-    opacity: 0.9;
+    background: #f4f4f5;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(255, 255, 255, 0.15);
+}
+.ibb-btn-cancel:active {
+    transform: translateY(0);
 }
 
 .ibb-btn-proceed {
-    background: transparent;
-    color: rgba(255, 255, 255, 0.25);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.01);
+    color: var(--ibb-text-muted);
+    border: 1px solid var(--ibb-border);
 }
 .ibb-btn-proceed:hover:not(.ibb-locked) {
-    color: rgba(255, 255, 255, 0.5);
-    border-color: rgba(255, 255, 255, 0.16);
+    color: var(--ibb-text-secondary);
+    background: rgba(255, 255, 255, 0.03);
+    border-color: rgba(255, 255, 255, 0.12);
 }
+.ibb-btn-proceed:active:not(.ibb-locked) {
+    background: rgba(255, 255, 255, 0.05);
+}
+
 .ibb-btn-proceed.ibb-locked {
     pointer-events: none;
-    opacity: 0.35;
+    opacity: 0.12;
+    cursor: not-allowed;
 }
 
 .ibb-cooldown {
     text-align: center;
-    font-size: 11px;
-    color: rgba(255, 255, 255, 0.18);
-    min-height: 16px;
+    font-size: 13px;
+    color: var(--ibb-text-muted);
+    letter-spacing: 0.2px;
+    margin-top: 6px;
 }
