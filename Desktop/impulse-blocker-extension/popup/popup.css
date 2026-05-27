@@ -10,6 +10,7 @@
 /* ── Base ──────────────────────────────────────────────────────────────────── */
 body {
     width: 380px;
+    min-height: 500px;
     background: #0d0d0f;
     color: #f9fafb;
     font-family:
