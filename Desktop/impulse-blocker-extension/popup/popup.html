@@ -6,14 +6,10 @@
         <link rel="stylesheet" href="popup.css" />
     </head>
     <body>
-        <!-- Header -->
         <header class="header">
-            <div class="header-brand">
-                <div class="logo">✋</div>
-                <div class="header-text">
-                    <div class="header-title">Worth It?</div>
-                    <div class="header-sub">Think before you spend</div>
-                </div>
+            <div>
+                <div class="header-title">Worth It?</div>
+                <div class="header-sub">Think before you spend</div>
             </div>
             <label class="toggle">
                 <input type="checkbox" id="toggle-enabled" checked />
@@ -21,7 +17,6 @@
             </label>
         </header>
 
-        <!-- Tab nav -->
         <nav class="tabs">
             <button class="tab active" data-tab="dashboard">Overview</button>
             <button class="tab" data-tab="history">History</button>
@@ -30,13 +25,10 @@
 
         <!-- Overview -->
         <div class="panel active" id="panel-dashboard">
-            <div class="budget-card">
-                <div class="budget-card-header">
-                    <span class="budget-label">This month</span>
-                    <span class="budget-pct" id="budget-pct">0%</span>
-                </div>
-                <div class="budget-amount">
-                    <span class="budget-currency">$</span
+            <div class="section">
+                <div class="section-label">Spent this month</div>
+                <div class="big-number">
+                    <span class="currency">$</span
                     ><span id="stat-spent">0</span>
                 </div>
                 <div class="bar-track">
@@ -46,28 +38,28 @@
                         style="width: 0%"
                     ></div>
                 </div>
-                <div class="budget-footer">
+                <div class="bar-meta">
                     <span id="budget-spent-label">$0 spent</span>
-                    <span id="stat-left">$0 remaining</span>
+                    <span id="budget-pct">0% of budget</span>
                 </div>
             </div>
 
-            <div class="stat-row">
-                <div class="stat-card">
-                    <div class="stat-icon">🛡️</div>
-                    <div>
-                        <div class="stat-val val-purple" id="stat-blocked">
-                            0
-                        </div>
-                        <div class="stat-label">Blocked</div>
-                    </div>
+            <div class="divider"></div>
+
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-number val-green" id="stat-left">$0</div>
+                    <div class="stat-label">Remaining</div>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-icon">🧋</div>
-                    <div>
-                        <div class="stat-val val-amber" id="stat-bobas">0</div>
-                        <div class="stat-label">Bobas saved</div>
+                <div class="stat">
+                    <div class="stat-number val-purple" id="stat-blocked">
+                        0
                     </div>
+                    <div class="stat-label">Blocked</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number val-amber" id="stat-bobas">0</div>
+                    <div class="stat-label">Bobas saved</div>
                 </div>
             </div>
         </div>
@@ -84,7 +76,7 @@
                     >Monthly budget</label
                 >
                 <div class="field-row">
-                    <span class="field-unit">$</span>
+                    <span class="field-adornment">$</span>
                     <input
                         type="number"
                         id="set-budget"
@@ -110,15 +102,17 @@
                         max="300"
                         step="5"
                     />
-                    <span class="field-unit field-unit-right">sec</span>
+                    <span class="field-adornment field-adornment-right"
+                        >sec</span
+                    >
                 </div>
-                <p class="field-hint">Seconds before "Buy anyway" unlocks</p>
+                <p class="field-hint">
+                    Seconds you must wait before "Buy anyway" unlocks
+                </p>
             </div>
 
             <button class="btn-primary" id="save-btn">Save changes</button>
-            <button class="btn-danger" id="reset-btn">
-                Reset monthly data
-            </button>
+            <button class="btn-ghost" id="reset-btn">Reset monthly data</button>
         </div>
 
         <div class="toast" id="toast"></div>
